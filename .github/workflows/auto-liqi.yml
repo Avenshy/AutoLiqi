@@ -29,25 +29,16 @@ jobs:
             - name: Generate liqi.proto from liqi.json
               run: pbjs -t proto3 liqi.json > liqi.proto
 
-            - name: Publish liqi.proto
-              uses: actions/upload-artifact@v4
-              with:
-                name: "${{ env.version }} - liqi.proto"
-                path: liqi.proto
-
             - name: Make the protoc executable
               run: chmod +x protoc
 
             - name: Generate liqi_pb2.py from liqi.proto
               run: ./protoc --python_out=. liqi.proto
 
-            - name: Publish liqi_pb2.py
+            - name: Publish protobuf files
               uses: actions/upload-artifact@v4
               with:
-                name: "${{ env.version }} - liqi_pb2.py"
-                path: liqi_pb2.py
-                  
-
-
-
-
+                name: ${{ env.version }}
+                path: |
+                  liqi.proto
+                  liqi_pb2.py
