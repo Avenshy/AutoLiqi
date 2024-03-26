@@ -1,7 +1,9 @@
 name: Auto Liqi
 
 on:
-    workflow_dispatch:
+  schedule:
+    - cron: '0 16 * * *'
+
 jobs:
     auto-liqi:
         runs-on: ubuntu-latest
