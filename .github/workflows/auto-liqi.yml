@@ -51,6 +51,8 @@ jobs:
             - name: Get latest release
               id: get_latest_release
               uses: joutvhu/get-release@v1
+              with:
+                latest: true
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               
@@ -69,4 +71,6 @@ jobs:
                   liqi.json
                   liqi.proto
                   liqi_pb2.py
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                    
