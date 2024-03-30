@@ -40,7 +40,32 @@ jobs:
             - name: Publish protobuf files
               uses: actions/upload-artifact@v4
               with:
-                name: ${{ env.version }}
+                name: ${{ env.prefix }}
                 path: |
+                  code.js
+                  liqi.json
                   liqi.proto
                   liqi_pb2.py
+
+            - name: Get latest release
+              id: get_latest_release
+              uses: joutvhu/get-release@v1
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              
+            - name: Upload release
+              uses: softprops/action-gh-release@v2
+              if: ${{ steps.get_latest_release.outputs.tag_name != env.prefix }}
+              with:
+                tag_name: ${{ env.prefix }}
+                token: ${{ secrets.GITHUB_TOKEN }}
+                body: |
+                  code.js ${{ env.version }}
+                  liqi.json ${{ env.prefix }}
+                make_latest: true
+                files: |
+                  code.js
+                  liqi.json
+                  liqi.proto
+                  liqi_pb2.py
+                   
