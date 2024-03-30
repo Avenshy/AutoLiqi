@@ -29,7 +29,7 @@ def main():
         f.write(code_js)
     env = os.getenv('GITHUB_ENV')
     with open(env, "a") as f:
-        f.write(f"code-js=v{version['version']}")
+        f.write(f"code-js=v{version['version']}\n")
     with open(env, "a") as f:
         f.write(f"liqi-json={prefix}")
 
