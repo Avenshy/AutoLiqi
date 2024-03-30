@@ -2,7 +2,8 @@ name: Auto Liqi
 
 on:
   schedule:
-    - cron: '0 12 * * *'
+    - cron: '0 16 * * *'
+  workflow_dispatch:
 
 jobs:
     auto-liqi:
@@ -40,7 +41,7 @@ jobs:
             - name: Publish protobuf files
               uses: actions/upload-artifact@v4
               with:
-                name: ${{ env.prefix }}
+                name: ${{ env.liqi-json }}
                 path: |
                   code.js
                   liqi.json
@@ -55,13 +56,13 @@ jobs:
               
             - name: Upload release
               uses: softprops/action-gh-release@v2
-              if: ${{ steps.get_latest_release.outputs.tag_name != env.prefix }}
+              if: ${{ steps.get_latest_release.outputs.tag_name != env.liqi-json }}
               with:
-                tag_name: ${{ env.prefix }}
+                tag_name: ${{ env.liqi-json }}
                 token: ${{ secrets.GITHUB_TOKEN }}
                 body: |
-                  code.js ${{ env.version }}
-                  liqi.json ${{ env.prefix }}
+                  code.js ${{ env.code-js }}
+                  liqi.json ${{ env.liqi-json }}
                 make_latest: true
                 files: |
                   code.js
