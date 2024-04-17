@@ -2,8 +2,11 @@ name: Auto Liqi
 
 on:
   schedule:
-    - cron: '0 16 * * *'
+    - cron: '0 12 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
     auto-liqi:
