@@ -21,7 +21,7 @@ jobs:
                 python-version: '3.10'
 
             - name: Install requests
-              run: python -m pip install --upgrade pip install requests
+              run: python -m pip install requests
 
             - name: Set up Node.js
               uses: actions/setup-node@v4
