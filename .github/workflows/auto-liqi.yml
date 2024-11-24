@@ -56,9 +56,22 @@ jobs:
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               
+            - name: Compare body
+              id: compare_body
+              uses: actions/github-script@v7
+              with:
+                script: |
+                  const latestBody = steps.get_latest_release.outputs.body
+                  const currentBody = JSON.parse(env.body);
+                  if (latestBody === currentBody.body) {
+                    core.exportVariable('release_needed', 'false');
+                  } else {
+                    core.exportVariable('release_needed', 'true');
+                  }
+
             - name: Upload release
               uses: softprops/action-gh-release@v2
-              if: ${{ steps.get_latest_release.outputs.body != fromJSON(env.body) }}
+              if: env.release_needed == 'true'
               with:
                 tag_name: ${{ env.version }}
                 token: ${{ secrets.GITHUB_TOKEN }}
