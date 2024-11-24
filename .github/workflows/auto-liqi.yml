@@ -41,7 +41,7 @@ jobs:
             - name: Publish protobuf files
               uses: actions/upload-artifact@v4
               with:
-                name: ${{ env.liqi-json }}
+                name: ${{ env.version }}
                 path: |
                   code.js
                   liqi.json
