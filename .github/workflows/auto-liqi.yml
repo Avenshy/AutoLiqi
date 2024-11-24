@@ -61,8 +61,8 @@ jobs:
               uses: actions/github-script@v7
               with:
                 script: |
-                  const latestBody = steps.get_latest_release.outputs.body
-                  const currentBody = JSON.parse(env.body);
+                  const latestBody = ${{steps.get_latest_release.outputs.body}};
+                  const currentBody = JSON.parse(${{env.body}});
                   if (latestBody === currentBody.body) {
                     core.exportVariable('release_needed', 'false');
                   } else {
