@@ -47,7 +47,7 @@ def main():
     with open(output, "a") as f:
         f.write(f'version=v{version["version"]}-{time.strftime("%Y.%m.%d", time.localtime())}\n')
     with open(output, "a") as f:
-        f.write(f'body<<EOF\n| Filename | Version |\n| :---: | :---: |\n| code.js | `{code_js_ver}` |\n| liqi.json | `{res["res"]["res/proto/liqi.json"]["prefix"]}` |\n| lqc.lqbin | `{res["res"]["res/config/lqc.lqbin"]["prefix"]}` |"\nEOF\n')
+        f.write(f'body<<EOF\n| Filename | Version |\n| :---: | :---: |\n| code.js | `{code_js_ver}` |\n| liqi.json | `{res["res"]["res/proto/liqi.json"]["prefix"]}` |\n| lqc.lqbin | `{res["res"]["res/config/lqc.lqbin"]["prefix"]}` |\nEOF\n')
 
 if __name__ == '__main__':
     main()
