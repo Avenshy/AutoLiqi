@@ -2,11 +2,8 @@ name: Auto Liqi
 
 on:
   schedule:
-    - cron: '0 12 * * *'
+    - cron: '0 16 * * *'
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
     auto-liqi:
@@ -61,19 +58,18 @@ jobs:
               
             - name: Upload release
               uses: softprops/action-gh-release@v2
-              if: ${{ steps.get_latest_release.outputs.tag_name != env.liqi-json }}
+              if: ${{ steps.get_latest_release.outputs.body != fromJSON(env.body) }}
               with:
-                tag_name: ${{ env.liqi-json }}
+                tag_name: ${{ env.version }}
                 token: ${{ secrets.GITHUB_TOKEN }}
-                body: |
-                  code.js ${{ env.code-js }}
-                  liqi.json ${{ env.liqi-json }}
+                body: ${{fromJSON(env.body)}}
                 make_latest: true
                 files: |
                   code.js
                   liqi.json
                   liqi.proto
                   liqi_pb2.py
+                  lqc.lqbin
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                    
