@@ -45,7 +45,7 @@ def main():
         f.write(lqc_lqbin)
     env = os.getenv('GITHUB_ENV')
     with open(env, "a") as f:
-        f.write(f'version=v{version["version"]}-{time.strftime("%Y/%m/%d", time.localtime())}\n')
+        f.write(f'version=v{version["version"]}-{time.strftime("%Y.%m.%d", time.localtime())}\n')
     with open(env, "a") as f:
         f.write(f'body=| Filename | Version |\\n| :---: | :---: |\\n| code.js | `{code_js_ver}` |\\n| liqi.json | `{res["res"]["res/proto/liqi.json"]["prefix"]}` |\\n| lqc.lqbin | `{res["res"]["res/config/lqc.lqbin"]["prefix"]}` |\n')
 
