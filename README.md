@@ -1,7 +1,7 @@
 # AutoLiqi
-每天20:00（UTF+8）自动获取`code.js`、`liqi.json`和`lqc.lqbin`，并将`liqi.json`转为`liqi.proto`和`liqi_pb2.py`。
+每4个小时自动获取`code.js`、`liqi.json`和`lqc.lqbin`，并将`liqi.json`转为`liqi.proto`和`liqi_pb2.py`。
 
-Automatically fetch `code.js`, `liqi.json` and `lqc.lqbin` at 20:00 (UTF+8) every day and convert `liqi.json` to `liqi.proto` and `liqi_pb2.py`.
+Automatically fetch `code.js`, `liqi.json` and `lqc.lqbin` every 4 hours and convert `liqi.json` to `liqi.proto` and `liqi_pb2.py`.
 
 ## 使用方法
 在[Release](https://github.com/Avenshy/AutoLiqi/releases/latest)中下载。
