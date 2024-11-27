@@ -19,7 +19,7 @@ def get_liqi_json(res):
 
 def get_lqc_lqbin(res):
     req = requests.get( f'https://game.maj-soul.com/1/{res["res"]["res/config/lqc.lqbin"]["prefix"]}/res/config/lqc.lqbin',headers=Headers)
-    return req.text
+    return req.content
 
 def get_code_js(code):
     req = requests.get( f'https://game.maj-soul.com/1/{code}',headers=Headers)
@@ -39,9 +39,9 @@ def main():
 
     with open('liqi.json','w') as f:
         f.write(liqi)
-    with open('code.js','w') as f:
+    with open('code.js','w',encoding='utf-8') as f:
         f.write(code_js)
-    with open('lqc.lqbin','w') as f:
+    with open('lqc.lqbin','wb') as f:
         f.write(lqc_lqbin)
     output = os.getenv('GITHUB_OUTPUT')
     with open(output, "a") as f:
